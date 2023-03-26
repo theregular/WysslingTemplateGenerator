@@ -4,8 +4,7 @@ import docedit
 #TODO: Handle blank inputs
 #TODO: change simpler ones to radio choices
 #TODO: correct input?
-#TODO: save directory?
-#TODO: user inputs template? preferably not
+#TODO: choose save directory?
 
 categories = ["Customer Name:",
               "Customer Address:",
