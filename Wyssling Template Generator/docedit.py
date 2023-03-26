@@ -1,7 +1,9 @@
 # --FUTURE IDEAS--
+# handle templates for multiple states
+# handle templates for different types of mounts (ground, ballast, etc)
 # link with database to autofill info for states
 # make compatible with mac as well? (maybe not necessary if using on windows server)
-# Do I need to have separate files for this
+
 
 
 from docx2pdf import convert
@@ -17,7 +19,7 @@ global template
 #fill values
 
 date_fill = "March 7, 2023"
-name_fill = "Governali"
+name_fill = "Cheeser"
 address_fill = "324 Congress Street, Saddle Brook"
 state_fill = "NJ"
 systemSize_fill = "9.600" 
@@ -80,7 +82,7 @@ mountingType = "NiceRack"
 mountingInfo = None #changes based on the mounting the user selects
 spacing = "51"
 
-def setUserInput(userInput):
+def setUserInput(userInput): #TODO: figure out better system than hard coding values
     global name
     name = userInput[0]
 
@@ -88,54 +90,54 @@ def setUserInput(userInput):
     address = userInput[1]
 
     global state
-    state = userInput[2]
+    state = userInput[14]
 
     global systemSize
-    systemSize = userInput[3]
+    systemSize = userInput[2]
 
     global framing
-    framing = userInput[4]
+    framing = userInput[3]
 
     global roofMaterial
-    roofMaterial = userInput[5]
+    roofMaterial = userInput[4]
 
     global slope
-    slope = userInput[6]
+    slope = userInput[5]
 
     global atticAccess
-    atticAccess = userInput[7]
+    atticAccess = userInput[13]
 
     global existingDead
-    existingDead = userInput[8]
+    existingDead = userInput[6]
 
     global newDead
-    newDead = userInput[9]
+    newDead = userInput[7]
 
     global totalDead
-    totalDead = userInput[10]
+    totalDead = str(float(newDead) + float(existingDead))
 
     global snow
-    snow = userInput[11]
+    snow = userInput[8]
 
     global asce
-    asce = userInput[12]
+    asce = userInput[15]
 
     global wind
-    wind = userInput[13]
+    wind = userInput[9]
 
     global codeYear
-    codeYear = userInput[15]
+    codeYear = userInput[10]
 
     global exposureCat
-    exposureCat = userInput[14]
+    exposureCat = userInput[16]
 
     global mountingType
-    mountingType = userInput[16]
+    mountingType = userInput[11]
 
     #mountingInfo TODO: implement
 
     global spacing
-    spacing = userInput[17]
+    spacing = userInput[12]
 
     #print(userInput)
 
@@ -149,7 +151,7 @@ letterDate = today.strftime("%B %d, %Y")
 def replace(default, replace, paragraphIn):
     for run in paragraphIn.runs:
         if default in run.text:
-            #print(replace)
+            print(default + " " + replace)
             run.text = run.text.replace(default, replace)
 
 
