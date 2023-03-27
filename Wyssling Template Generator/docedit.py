@@ -36,6 +36,7 @@ wind_fill = "120"
 codeYear_fill = "2021" 
 exposureCat_fill = "B" 
 mountingType_fill = "EcoFasten" 
+mountingInfo_fill = "The maximum allowable withdrawal force for a 5/16” lag screw is 229 lbs per inch of penetration as identified in the National Design Standards (NDS) of timber construction specifications. Based on a minimum penetration depth of 2½”, the allowable capacity per connection is greater than the design withdrawal force (demand). Considering the variable factors for the existing roof framing and installation tolerances, the connection using one 5/16” diameter lag screw with a minimum of 2½” embedment will be adequate and will include a sufficient factor of safety."
 spacing_fill = "48"
 
 #default vals override with defvals doc
@@ -58,6 +59,7 @@ wind_default = "windDef"
 codeYear_default = "yearDef" 
 exposureCat_default = "exposDef" 
 mountingType_default = "mountDef" 
+mountingInfo_default = "mountInfoDef"
 spacing_default = "spacingDef"
 
 #userInput values
@@ -79,7 +81,8 @@ wind = "999" #set default values for state
 codeYear = "2018" #make int? 
 exposureCat = "F" #make char?
 mountingType = "NiceRack" 
-mountingInfo = None #changes based on the mounting the user selects
+#changes based on the mounting the user selects
+mountingInfo = "The maximum allowable withdrawal force for a 5/16” lag screw is 229 lbs per inch of penetration as identified in the National Design Standards (NDS) of timber construction specifications. Based on a minimum penetration depth of 2½”, the allowable capacity per connection is greater than the design withdrawal force (demand). Considering the variable factors for the existing roof framing and installation tolerances, the connection using one 5/16” diameter lag screw with a minimum of 2½” embedment will be adequate and will include a sufficient factor of safety."
 spacing = "51"
 
 def setUserInput(userInput): #TODO: figure out better system than hard coding values
@@ -90,7 +93,7 @@ def setUserInput(userInput): #TODO: figure out better system than hard coding va
     address = userInput[1]
 
     global state
-    state = userInput[14]
+    state = userInput[15]
 
     global systemSize
     systemSize = userInput[2]
@@ -105,7 +108,7 @@ def setUserInput(userInput): #TODO: figure out better system than hard coding va
     slope = userInput[5]
 
     global atticAccess
-    atticAccess = userInput[13]
+    atticAccess = userInput[14]
 
     global existingDead
     existingDead = userInput[6]
@@ -120,7 +123,7 @@ def setUserInput(userInput): #TODO: figure out better system than hard coding va
     snow = userInput[8]
 
     global asce
-    asce = userInput[15]
+    asce = userInput[16]
 
     global wind
     wind = userInput[9]
@@ -129,15 +132,16 @@ def setUserInput(userInput): #TODO: figure out better system than hard coding va
     codeYear = userInput[10]
 
     global exposureCat
-    exposureCat = userInput[16]
+    exposureCat = userInput[17]
 
     global mountingType
     mountingType = userInput[11]
 
-    #mountingInfo TODO: implement
+    global mountingInfo
+    mountingInfo = userInput[12]
 
     global spacing
-    spacing = userInput[12]
+    spacing = userInput[13]
 
     #print(userInput)
 
@@ -237,7 +241,8 @@ def run():
             replace(mountingType_default, mountingType, paragraph)
 
         #mount info
-            #TODO: implement
+        if mountingInfo_default in paragraph.text:
+            replace(mountingInfo_default, mountingInfo, paragraph)
 
         #spacing
         if spacing_default in paragraph.text:
@@ -261,5 +266,5 @@ def run():
 #template = Document('NJ Template (with defVals).docx')
 template = Document('templates/NJ Template (with defVals).docx')
 
-    #run()
+#run()
 

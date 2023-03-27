@@ -4,7 +4,7 @@ import docedit
 #TODO: Handle blank inputs
 #TODO: correct input?
 #TODO: choose save directory?
-#TODO: implement mounting info
+#TODO: implement mounting info with built in selection?
 #TODO: change template based on state input
 #TODO: handle florida code/other weird codes
 
@@ -18,14 +18,13 @@ categories = ["Customer Name:",
               "Attic Access:",
               "Existing Dead Load:",
               "New Dead Load:",
-              #"Total Dead Load:",
               "Snow Load:",
               "ASCE:",
               "Wind Speed:",
               "Exposure Category:",
               "Code Year:",
               "Mount Type:",
-              "Mount Info:", #TODO: implement
+              "Mount Info:",
               "Spacing:"
               ]
 
@@ -149,13 +148,13 @@ def generateWidgets():
     global rowNum
     rowNum = 0
     #name
-    generateRow(window)
-    #generateRow(window, docedit.name_fill)
+    #generateRow(window)
+    generateRow(window, docedit.name_fill)
     rowNum+=1
 
     #address
-    generateRow(window)
-    #generateRow(window, docedit.address_fill)
+    #generateRow(window)
+    generateRow(window, docedit.address_fill)
     rowNum+=1
 
     #state
@@ -257,8 +256,7 @@ def generateWidgets():
     rowNum+=1
 
     #mount info
-    label = tk.Label(window, text=categories[rowNum])
-    label.grid(row=rowNum, column=0)
+    generateRow(window, docedit.mountingInfo_fill)
     rowNum+=1
 
     #spacing
